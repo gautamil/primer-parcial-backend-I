@@ -2,7 +2,42 @@ server:
   port: 8084
 
 spring:
+  data:
+    mongodb:
+        authentication-database: admin
+        username: rootuser
+        password: rootpass
+        database: catalog-db
+        port: 27017
+        host: localhost
   eureka:
     client:
       service-url:
         defaultZone: http://localhost:8761/eureka
+ 
+ resilience4j:
+  circuitbreaker:
+    instances:
+      movies:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 15000
+        permittedNumberOfCallsInHalfOpenState: 3
+        registerHealthIndicator: true
+        allowHealthIndicatorToFail: false
+    series:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 15000
+        permittedNumberOfCallsInHalfOpenState: 3
+        registerHealthIndicator: true
+        allowHealthIndicatorToFail: false
+        
+management: 
+  health:
+    circuitbreakers:
+      enabled: true
