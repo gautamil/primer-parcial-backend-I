@@ -25,6 +25,15 @@ spring:
               args:
                 name: catalogService
                 fallbackUri: forward:/fallback/catalog
+         - id: seriesRoute 
+          uri: lb://series-service/ 
+          predicates: 
+            - Path=/series/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: serieService
+                fallbackUri: forward:/fallback/series
 
 info:
   app:
