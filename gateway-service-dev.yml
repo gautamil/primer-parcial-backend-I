@@ -7,13 +7,18 @@ spring:
       default-filters:
         - name: LoggingFilter
       routes:
-        - id: movieRoute #Identificando la ruta del service de producto
-          uri: http://localhost:8083/ #URL donde se hará el redirect segun el predicate definido
-          predicates: #RReglas de análisis de una request
+        - id: movieRoute 
+          uri: lb://movie-service
+          predicates: 
             - Path=/movies/**
-        - id: catalogRoute #Identificando la ruta del service de producto
-          uri: http://localhost:8084/ #URL donde se hará el redirect segun el predicate definido
-          predicates: #RReglas de análisis de una request
+          filters: 
+            - name: CircuitBreaker
+              args:
+                name: moviesService
+                fallbackUri: forward:/fallback/movies
+        - id: catalogRoute 
+          uri: lb://catalog-service/ 
+          predicates: 
             - Path=/catalog/**
           filters:
             - name: CircuitBreaker
