@@ -2,10 +2,6 @@ server:
   port: 8080
   
 spring:
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://eureka-service:8761/eureka/
   cloud:
     gateway:
       default-filters:
@@ -33,14 +29,8 @@ spring:
           uri: lb://series-service/ 
           predicates: 
             - Path=/series/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: serieService
-                fallbackUri: forward:/fallback/series
-
 info:
   app:
     name: $(spring.application.name)
     version: 1.0.0
-    description: API Gateway
+    description: API Gateway (Camila Gauto)
