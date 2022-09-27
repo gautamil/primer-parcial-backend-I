@@ -9,10 +9,4 @@ spring:
       password: root
       database: catalogFinal
       port: 27017
-      host: mongodb
-
-info: 
-  app:
-    name: ${spring.application.name}
-    version: 1.0.0
-    description: Catalog Microservice (Camila Gauto)
+      host: mongodbCatalog
