@@ -29,8 +29,3 @@ spring:
           uri: lb://series-service/ 
           predicates: 
             - Path=/series/**
-info:
-  app:
-    name: $(spring.application.name)
-    version: 1.0.0
-    description: API Gateway (Camila Gauto)
