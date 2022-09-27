@@ -10,9 +10,3 @@ spring:
       database: series-db
       port: 27017
       host: mongodb
-
-info: 
-  app:
-    name: ${spring.application.name}
-    version: 1.0.0
-    description: Series Microservice (Camila Gauto)
