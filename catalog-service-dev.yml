@@ -1,5 +1,5 @@
 server:
-  port: 8087
+  port: 8088
 
 spring:
   data:
@@ -8,5 +8,5 @@ spring:
       username: root
       password: root
       database: catalogFinal
-      port: 27019
+      port: 27018
       host: mongodbCatalog
